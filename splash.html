@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><script>if(sessionStorage.getItem("v3n_preview_auth")!=="dmVudGFuYWwyMDI2"){window.location.replace("index.html");}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ventanal - Splash Screen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="view-transition" content="same-origin">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/b6261004-73df-45ab-98d3-6b399a2414be" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/b83044f3-cb29-40c7-b24d-041a74536221" as="document">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #002E5B;
+      overflow: hidden;
+    }
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition {
+      background-color: #002E5B;
+    }
+    ::view-transition-old(main-content) {
+      animation: 0.25s ease-out both fade-out;
+    }
+    ::view-transition-new(main-content) {
+      animation: 0.25s ease-in 0.1s both fade-in;
+    }
+    @keyframes fade-out {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .loading-bar {
+      animation: loading 2.5s ease-in-out infinite;
+      transform-origin: left;
+    }
+    @keyframes loading {
+      0% { transform: scaleX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { transform: scaleX(1); opacity: 1; }
+      100% { transform: scaleX(1); opacity: 0; }
+    }
+    .arch-motif {
+      border-top-left-radius: 999px;
+      border-top-right-radius: 999px;
+      background: linear-gradient(to bottom, rgba(237, 178, 29, 0.08), transparent);
+    }
+    .floating-v {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen bg-[#002E5B] flex flex-col items-center justify-center relative overflow-hidden">
+    
+    <!-- Decorative Arch Motif Background -->
+    <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-[120%] h-[400px] arch-motif opacity-30"></div>
+    <div class="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[140%] h-[500px] arch-motif opacity-20 rotate-180"></div>
+    
+    <!-- Main Content Transition Group -->
+    <main style="view-transition-name: main-content" class="relative z-10 flex flex-col items-center">
+      
+      <!-- Logo & Mascot Stack -->
+      <div class="flex flex-col items-center gap-6">
+        <div class="floating-v">
+          <img 
+            src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/bd476bd9-c0a5-420d-aba6-fddf78db2e79/1771832556366-5a175590/logos.ventanal_Mesa_de_trabajo_1-01.svg" 
+            alt="Ventanal Logo" 
+            class="w-48 md:w-56 h-auto"
+          />
+        </div>
+        
+        <!-- Tagline (Already part of some logo assets, but added manually for precise style control if needed) -->
+        <p class="text-[#EDB21D] text-xs font-medium tracking-[0.1em] uppercase animate-pulse">
+          tu ventana a la información
+        </p>
+      </div>
+
+      <!-- Bottom Loading Indicator Area -->
+      <div class="fixed bottom-24 left-1/2 -translate-x-1/2 w-48">
+        <div class="h-[2px] w-full bg-[#EDB21D]/20 rounded-full overflow-hidden">
+          <div class="h-full bg-[#EDB21D] loading-bar rounded-full"></div>
+        </div>
+        <p class="text-white/40 text-[10px] font-bold text-center mt-4 tracking-[0.2em] uppercase">
+          Cargando Directorio
+        </p>
+      </div>
+
+    </main>
+
+    <!-- Subtle Branding Footer -->
+    <div class="fixed bottom-10 left-0 right-0 flex justify-center opacity-30 pointer-events-none">
+       <iconify-icon icon="lucide:shield-check" class="text-white/20 text-2xl"></iconify-icon>
+    </div>
+
+    <!-- Navigational fallback/trigger (In real implementation, JS redirects after loading) -->
+    <a href="https://p.superdesign.dev/draft/b6261004-73df-45ab-98d3-6b399a2414be" 
+       id="splash-to-home-link" 
+       class="absolute inset-0 z-50 cursor-default">
+      <span class="sr-only">Entrar</span>
+    </a>
+
+  </div>
+
+  <!-- Mock Auto-Redirect for Demo purposes -->
+  <script>
+    /* 
+    In a production splash screen, we would wait for assets to load or a timer,
+    then use window.location.href to move to the Home screen.
+    setTimeout(() => {
+      window.location.href = "https://p.superdesign.dev/draft/b6261004-73df-45ab-98d3-6b399a2414be";
+    }, 3000);
+    */
+  </script>
+</body>
+</html>

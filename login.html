@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><script>if(sessionStorage.getItem("v3n_preview_auth")!=="dmVudGFuYWwyMDI2"){window.location.replace("index.html");}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ventanal - Login</title>
+  <meta name="view-transition" content="same-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(main-content) {
+      animation: 0.25s ease-out both fade-out;
+    }
+    ::view-transition-new(main-content) {
+      animation: 0.25s ease-in 0.1s both fade-in;
+    }
+    @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    
+    .input-shadow:focus-within {
+      box-shadow: 0 0 0 4px rgba(0, 46, 91, 0.1);
+    }
+  </style>
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/b6261004-73df-45ab-98d3-6b399a2414be" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/c7a1bb77-91db-45d2-9664-cdb138c9b363" as="document">
+</head>
+<body>
+  <div class="min-h-[844px] w-full max-w-[390px] mx-auto bg-[#F8F9FC] flex flex-col relative overflow-hidden">
+    <!-- Content Wrapper for Transitions -->
+    <main style="view-transition-name: main-content" class="flex-1 flex flex-col px-6 pt-16 pb-10">
+      
+      <!-- Logo Section -->
+      <div class="flex justify-center mb-10">
+        <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/bd476bd9-c0a5-420d-aba6-fddf78db2e79/1771832560558-f3f2bfe8/logos.ventanal_Mesa_de_trabajo_1-11.svg" 
+             alt="Ventanal Logo" 
+             class="w-12 h-12">
+      </div>
+
+      <!-- Tab Control -->
+      <div class="p-1 bg-gray-100 rounded-full flex mb-10">
+        <button id="tab-login" class="flex-1 py-2.5 text-[11px] font-bold rounded-full bg-[#002E5B] text-white shadow-sm transition-all">
+          Iniciar sesión
+        </button>
+        <button id="tab-register" class="flex-1 py-2.5 text-[11px] font-bold rounded-full text-gray-500 hover:text-[#002E5B] transition-all">
+          Registrarse
+        </button>
+      </div>
+
+      <!-- Welcome Text -->
+      <div class="mb-8 text-center">
+        <h1 class="text-2xl font-extrabold text-[#002E5B] tracking-tight mb-1">Bienvenido de nuevo</h1>
+        <p class="text-sm font-medium text-gray-500">Ingresa tus datos para continuar</p>
+      </div>
+
+      <!-- Form -->
+      <form onsubmit="return false;" class="space-y-5 flex-1">
+        <!-- Email Input -->
+        <div class="group">
+          <label for="email-input" class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Correo electrónico</label>
+          <div class="relative input-shadow rounded-2xl transition-all">
+            <input id="email-input" type="email" placeholder="ejemplo@correo.com" 
+                   class="w-full h-14 px-5 bg-white border border-gray-200 rounded-2xl text-sm font-medium focus:border-[#002E5B] outline-none transition-all">
+          </div>
+        </div>
+
+        <!-- Password Input -->
+        <div>
+          <label for="password-input" class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Contraseña</label>
+          <div class="relative input-shadow rounded-2xl transition-all">
+            <input id="password-input" type="password" placeholder="••••••••" 
+                   class="w-full h-14 px-5 bg-white border border-gray-200 rounded-2xl text-sm font-medium focus:border-[#002E5B] outline-none transition-all">
+            <button type="button" class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#002E5B] transition-colors">
+              <iconify-icon icon="lucide:eye" class="text-xl"></iconify-icon>
+            </button>
+          </div>
+          <div class="mt-3 text-right">
+            <a href="#forgot-password" id="forgot-password-link" class="text-xs font-bold text-[#002E5B] hover:text-[#EDB21D] transition-colors">¿Olvidaste tu contraseña?</a>
+          </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="pt-4">
+          <a href="https://p.superdesign.dev/draft/b6261004-73df-45ab-98d3-6b399a2414be" id="btn-continue-login" 
+             class="w-full h-14 bg-[#002E5B] text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg active:scale-[0.98] transition-all">
+            Continuar
+          </a>
+        </div>
+
+        <!-- Divider -->
+        <div class="py-4 flex items-center gap-4">
+          <div class="flex-1 h-px bg-gray-200"></div>
+          <span class="text-[11px] font-bold text-gray-400 uppercase">o continuar con</span>
+          <div class="flex-1 h-px bg-gray-200"></div>
+        </div>
+
+        <!-- Social Login -->
+        <button type="button" id="btn-google-login" 
+                class="w-full h-14 bg-white border border-gray-200 rounded-full flex items-center justify-center gap-3 active:scale-[0.98] transition-all">
+          <iconify-icon icon="logos:google-icon" class="text-xl"></iconify-icon>
+          <span class="text-sm font-bold text-[#002E5B]">Continuar con Google</span>
+        </button>
+      </form>
+
+      <!-- Footer Legal -->
+      <div class="mt-10 text-center">
+        <p class="text-[11px] font-medium text-gray-400 leading-relaxed">
+          Al continuar, aceptas nuestros 
+          <a href="#terms" id="terms-link" class="text-[#002E5B] font-bold underline underline-offset-2">Términos de Uso</a> 
+          y 
+          <a href="#privacy" id="privacy-link" class="text-[#002E5B] font-bold underline underline-offset-2">Política de Privacidad</a>.
+        </p>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

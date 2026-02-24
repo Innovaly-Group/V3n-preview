@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V3n Preview — Access</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: #002E5B; }
+    .shake { animation: shake 0.4s ease; }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center px-6">
+  <div class="w-full max-w-sm">
+
+    <!-- Logo -->
+    <div class="flex justify-center mb-10">
+      <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/bd476bd9-c0a5-420d-aba6-fddf78db2e79/1771832556366-5a175590/logos.ventanal_Mesa_de_trabajo_1-01.svg"
+           alt="Ventanal" class="w-40 h-auto opacity-90">
+    </div>
+
+    <!-- Card -->
+    <div class="bg-white rounded-3xl p-8 shadow-2xl">
+      <h1 class="text-xl font-extrabold text-[#002E5B] mb-1">Preview privado</h1>
+      <p class="text-sm text-gray-400 font-medium mb-7">Ingresa la clave para continuar</p>
+
+      <div id="gate-form">
+        <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Clave de acceso</label>
+        <input id="pass-input" type="password" placeholder="••••••••••"
+               class="w-full h-12 px-4 rounded-2xl border border-gray-200 text-sm font-semibold outline-none focus:border-[#002E5B] transition-all mb-1"
+               onkeydown="if(event.key==='Enter') checkPass()">
+        <p id="err-msg" class="text-[11px] text-red-500 font-semibold h-4 mb-5"></p>
+        <button onclick="checkPass()"
+                class="w-full h-12 bg-[#002E5B] text-white rounded-full font-bold text-sm hover:bg-[#05243A] active:scale-95 transition-all">
+          Entrar
+        </button>
+      </div>
+    </div>
+
+    <p class="text-center text-white/30 text-[11px] font-medium mt-6">
+      Ventanal · Mockups internos · Solo distribución autorizada
+    </p>
+  </div>
+
+  <script>
+    const TOKEN_KEY = 'v3n_preview_auth';
+    const VALID_TOKEN = 'dmVudGFuYWwyMDI2';  // base64('ventanal2026')
+
+    // Already authenticated? Skip gate
+    if (sessionStorage.getItem(TOKEN_KEY) === VALID_TOKEN) {
+      window.location.replace('gallery.html');
+    }
+
+    function checkPass() {
+      const input = document.getElementById('pass-input').value.trim();
+      if (btoa(input) === VALID_TOKEN) {
+        sessionStorage.setItem(TOKEN_KEY, VALID_TOKEN);
+        window.location.replace('gallery.html');
+      } else {
+        const card = document.getElementById('gate-form');
+        const err = document.getElementById('err-msg');
+        err.textContent = 'Clave incorrecta';
+        card.classList.add('shake');
+        setTimeout(() => card.classList.remove('shake'), 400);
+        document.getElementById('pass-input').value = '';
+        document.getElementById('pass-input').focus();
+      }
+    }
+
+    document.getElementById('pass-input').focus();
+  </script>
+</body>
+</html>

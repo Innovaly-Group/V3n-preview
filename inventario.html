@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><script>if(sessionStorage.getItem("v3n_preview_auth")!=="dmVudGFuYWwyMDI2"){window.location.replace("index.html");}</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ventanal — Inventario de Pantallas</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F8F9FC; color: #002E5B; }
+  table { border-collapse: collapse; width: 100%; }
+  th { background: #002E5B; color: white; font-weight: 700; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 14px; text-align: left; }
+  td { padding: 9px 14px; font-size: 13px; border-bottom: 1px solid #f0f0f4; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f5f7ff; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+  .p1 { background: #dbeafe; color: #1d4ed8; }
+  .p2 { background: #fef9c3; color: #92400e; }
+  .p3 { background: #f3f4f6; color: #6b7280; }
+  .done { background: #dcfce7; color: #15803d; }
+  .new { background: #fff7ed; color: #c2410c; }
+  .wire { background: #e0f2fe; color: #0369a1; }
+  .crit { background: #fee2e2; color: #b91c1c; }
+  .section-header { background: #002E5B; color: white; font-weight: 800; font-size: 14px; padding: 12px 16px; border-radius: 8px; margin: 32px 0 12px; display: flex; align-items: center; gap: 8px; }
+  .sub-header { background: #EDB21D; color: #002E5B; font-weight: 700; font-size: 12px; padding: 8px 14px; border-radius: 6px; margin: 20px 0 8px; }
+  .module-divider { border-top: 2px solid #002E5B; margin: 48px 0; }
+  .draft-id { font-family: monospace; font-size: 11px; background: #f0f0f4; padding: 2px 6px; border-radius: 4px; color: #555; }
+  .toc-link { display: block; padding: 4px 0; color: #002E5B; text-decoration: none; font-size: 13px; font-weight: 600; }
+  .toc-link:hover { color: #EDB21D; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div style="background:#002E5B; color:white; padding:32px;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+      <div>
+        <div style="font-size:22px; font-weight:800; margin-bottom:4px;">
+          Ventanal — Inventario de Pantallas
+          <span style="background:#EDB21D; color:#002E5B; font-size:10px; font-weight:800; padding:3px 10px; border-radius:6px; margin-left:10px; vertical-align:middle;">MASTER</span>
+        </div>
+        <div style="color:#93c5fd; font-size:13px;">~128 pantallas + 10 email templates · 6 módulos</div>
+      </div>
+      <div style="text-align:right; font-size:12px; color:#93c5fd;">
+        <div>Última actualización: 2026-02-24</div>
+        <div>Fuente: SuperDesign · branch <code style="background:#0d3a6b; padding:1px 6px; border-radius:4px;">mockups</code></div>
+        <div style="margin-top:8px;"><a href="index.html" style="color:#EDB21D; font-weight:700;">← Ver galería de pantallas</a></div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div style="display:flex; gap:16px; margin-top:24px; flex-wrap:wrap;">
+      <div style="background:#0d3a6b; border-radius:10px; padding:12px 20px; min-width:120px;">
+        <div style="font-size:24px; font-weight:800;">~128</div>
+        <div style="font-size:11px; color:#93c5fd; font-weight:600;">Pantallas totales</div>
+      </div>
+      <div style="background:#0d3a6b; border-radius:10px; padding:12px 20px; min-width:120px;">
+        <div style="font-size:24px; font-weight:800; color:#EDB21D;">~38</div>
+        <div style="font-size:11px; color:#93c5fd; font-weight:600;">P1 — Demo cliente</div>
+      </div>
+      <div style="background:#0d3a6b; border-radius:10px; padding:12px 20px; min-width:120px;">
+        <div style="font-size:24px; font-weight:800;">~59</div>
+        <div style="font-size:11px; color:#93c5fd; font-weight:600;">P2 — Prototipo</div>
+      </div>
+      <div style="background:#0d3a6b; border-radius:10px; padding:12px 20px; min-width:120px;">
+        <div style="font-size:24px; font-weight:800; color:#6b7280;">~31</div>
+        <div style="font-size:11px; color:#93c5fd; font-weight:600;">P3 — Si hay tiempo</div>
+      </div>
+      <div style="background:#0d3a6b; border-radius:10px; padding:12px 20px; min-width:120px;">
+        <div style="font-size:24px; font-weight:800; color:#4ade80;">7</div>
+        <div style="font-size:11px; color:#93c5fd; font-weight:600;">Generadas A1</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="max-width:1100px; margin:0 auto; padding:32px 24px;">
+
+  <!-- Legend -->
+  <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; align-items:center;">
+    <span style="font-size:12px; font-weight:700; color:#6b7280;">Estado:</span>
+    <span class="badge done">✅✅ Generado</span>
+    <span class="badge wire">✅ Wireframe</span>
+    <span class="badge new">🆕 Crear desde cero</span>
+    <span class="badge crit">🆕 CRÍTICO</span>
+    <span style="font-size:12px; font-weight:700; color:#6b7280; margin-left:8px;">Prioridad:</span>
+    <span class="badge p1">P1</span>
+    <span class="badge p2">P2</span>
+    <span class="badge p3">P3</span>
+  </div>
+
+  <!-- TOC -->
+  <div style="background:white; border-radius:12px; padding:20px 24px; border:1px solid #e5e7eb; margin-bottom:40px;">
+    <div style="font-weight:800; font-size:14px; margin-bottom:12px; color:#002E5B;">Módulos</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:4px;">
+      <a class="toc-link" href="#modulo-a">A — Consumer Mobile (38)</a>
+      <a class="toc-link" href="#modulo-b">B — Business Owner Mobile (33)</a>
+      <a class="toc-link" href="#modulo-c">C — Web Público / SEO (11)</a>
+      <a class="toc-link" href="#modulo-d">D — Admin Web Desktop (27)</a>
+      <a class="toc-link" href="#modulo-e">E — Web Business Portal (7)</a>
+      <a class="toc-link" href="#modulo-f">F — Email Templates (10)</a>
+      <a class="toc-link" href="#ejecucion">Estado de ejecución de batches</a>
+    </div>
+  </div>
+
+  <!-- NOTE: Home already designed -->
+  <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:14px 18px; margin-bottom:24px; font-size:13px; color:#15803d;">
+    <strong>Ya diseñado (NO incluir en batches):</strong>
+    Home / Hub de Búsqueda → <code class="draft-id">5fd35ed6</code> ✅✅ (Home6, aprobado) ·
+    Component Base → <code class="draft-id">b6261004</code> ✅✅
+  </div>
+
+  <!-- ===== MÓDULO A ===== -->
+  <div id="modulo-a" class="section-header">📱 Módulo A — Consumer Mobile <span style="background:#EDB21D; color:#002E5B; font-size:11px; padding:2px 8px; border-radius:6px; margin-left:auto;">38 pantallas</span></div>
+
+  <div class="sub-header">A1 — Entrada y Perfiles (7 screens, P1) · <span style="font-weight:400;">6 generadas · 1 pendiente</span></div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table>
+      <thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th><th>Draft ID</th></tr></thead>
+      <tbody>
+        <tr><td>A1.1</td><td>Splash Screen</td><td><span class="badge p1">P1</span></td><td><span class="badge done">✅✅ generado</span></td><td><a href="splash.html" style="color:#002E5B;"><code class="draft-id">c7a1bb77</code> ↗</a></td></tr>
+        <tr><td>A1.2</td><td>Login / Registro</td><td><span class="badge p1">P1</span></td><td><span class="badge done">✅✅ generado</span></td><td><a href="login.html" style="color:#002E5B;"><code class="draft-id">b83044f3</code> ↗</a></td></tr>
+        <tr><td>A1.3</td><td>Resultados de Búsqueda — Lista</td><td><span class="badge p1">P1</span></td><td><span class="badge done">✅✅ generado</span></td><td><a href="resultados.html" style="color:#002E5B;"><code class="draft-id">a2622a8e</code> ↗</a></td></tr>
+        <tr><td>A1.4</td><td>Panel de Filtros (bottom sheet)</td><td><span class="badge p1">P1</span></td><td><span class="badge done">✅✅ generado</span></td><td><a href="filtros.html" style="color:#002E5B;"><code class="draft-id">d92028d9</code> ↗</a></td></tr>
+        <tr><td>A1.5</td><td>Perfil — Tier 0 (scraped, sin reclamar) ⭐</td><td><span class="badge p1">P1</span></td><td><span class="badge done">✅✅ generado</span></td><td><a href="tier0.html" style="color:#002E5B;"><code class="draft-id">a87e18e5</code> ↗</a></td></tr>
+        <tr><td>A1.6</td><td>Perfil — Free / Básico</td><td><span class="badge p1">P1</span></td><td><span class="badge done">✅✅ generado</span></td><td><a href="free.html" style="color:#002E5B;"><code class="draft-id">b1158dee</code> ↗</a></td></tr>
+        <tr><td>A1.7</td><td>Perfil — Profesional / Premium</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕 pendiente</span></td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-header">A2 — Mapa + Voice States (2 items, P1)</div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th><th>Draft ID</th></tr></thead>
+    <tbody>
+      <tr><td>A2.1</td><td>Resultados de Búsqueda — Mapa</td><td><span class="badge p1">P1</span></td><td><span class="badge wire">✅ wireframe</span></td><td>—</td></tr>
+      <tr><td>A2.2</td><td>Voice Search States <em style="color:#6b7280;">(spec doc, no pantalla)</em></td><td><span class="badge p1">P1</span></td><td><span class="badge wire">✅ wireframe</span></td><td>—</td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="sub-header">A3 — Acciones de Usuario (5 screens, P1)</div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>A3.1</td><td>Reviews — Lista Completa</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A3.2</td><td>Dejar Review</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A3.3</td><td>Catálogo de Servicios / Productos</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A3.4</td><td>Mi Perfil (User Account)</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A3.5</td><td>Favoritos</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="sub-header">A4 — Flujos Secundarios (7 screens, P2)</div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>A4.1</td><td>Autocomplete de Búsqueda</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A4.2</td><td>Sin Resultados</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A4.3</td><td>Galería de Fotos (expandida)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A4.4</td><td>Detalle de Item de Catálogo</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A4.5</td><td>Preview Mensaje WhatsApp / Contratar</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A4.6</td><td>Login Requerido (modal)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A4.7</td><td>Historial de Transacciones</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="sub-header">A5 — Auth Deep + Edge Cases (7 screens, P2/P3)</div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>A5.1</td><td>Verificación Magic Link</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A5.2</td><td>Verificación OTP (SMS)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A5.3</td><td>Setup de Perfil (primera vez)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A5.4</td><td>Permiso de Geolocalización (modal)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A5.5</td><td>Modal Info de Verificación</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A5.6</td><td>Mapa del Negocio</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A5.7</td><td>Mis Reviews</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="sub-header">A6 — P3 si hay tiempo (7 screens)</div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>A6.1</td><td>Tutorial Onboarding (3-4 slides)</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A6.2</td><td>Review Enviada (confirmación)</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A6.3</td><td>Historial de Búsqueda</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A6.4</td><td>Configuración de Privacidad</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A6.5</td><td>Pantalla Offline</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A6.6</td><td>Términos y Condiciones</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>A6.7</td><td>Política de Privacidad</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="module-divider"></div>
+
+  <!-- ===== MÓDULO B ===== -->
+  <div id="modulo-b" class="section-header">📱 Módulo B — Business Owner Mobile <span style="background:#EDB21D; color:#002E5B; font-size:11px; padding:2px 8px; border-radius:6px; margin-left:auto;">33 pantallas</span></div>
+
+  <div class="sub-header">B1 — Onboarding & Dashboard (6 screens, P1)</div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>B1.1</td><td>Toggle Modo Negocio</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>B1.2</td><td>Claiming de Perfil Scraped</td><td><span class="badge p1">P1</span></td><td><span class="badge crit">🆕 CRÍTICO</span></td></tr>
+      <tr><td>B1.3</td><td>Dashboard Negocio (Business Home)</td><td><span class="badge p1">P1</span></td><td><span class="badge wire">✅ wireframe</span></td></tr>
+      <tr><td>B1.4</td><td>Editar Perfil (negocio)</td><td><span class="badge p1">P1</span></td><td><span class="badge wire">✅ wireframe</span></td></tr>
+      <tr><td>B1.5</td><td>Gestión de Fotos</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>B1.6</td><td>Lista de Catálogo</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="sub-header">B2 — Operaciones Core (6 screens, P1)</div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>B2.1</td><td>Agregar / Editar Item de Catálogo</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>B2.2</td><td>Lista de Transacciones (BO)</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>B2.3</td><td>Lista de Reviews (BO view)</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>B2.4</td><td>Dashboard de Verificación</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>B2.5</td><td>Mi Plan Actual</td><td><span class="badge p1">P1</span></td><td><span class="badge wire">✅ wireframe</span></td></tr>
+      <tr><td>B2.6</td><td>Modal Upgrade de Plan</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="sub-header">B3 — Gestión Avanzada (6, P2) · B4 — Financiero & Analytics (9, P2/P3) · B5 — P3 (6)</div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>B3.1–B3.6</td><td>Horario · Disponibilidad · Notificaciones · Límite · Responder Review · Form Tier 2</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>B4.1–B4.7</td><td>Cupones · Crear Cupón · Detalle Tx · Tracker T2 · Analytics 7d · Historial · Pago Fallido</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>B4.8–B4.9</td><td>Analytics 30d · Solicitar Inspección T3</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>B5.1–B5.6</td><td>Preview Item · Disputar Review · Analytics Cupón · Tracker · Analytics Premium · Códigos Promo</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="module-divider"></div>
+
+  <!-- ===== MÓDULO C ===== -->
+  <div id="modulo-c" class="section-header">🌐 Módulo C — Web Público / SEO <span style="background:#EDB21D; color:#002E5B; font-size:11px; padding:2px 8px; border-radius:6px; margin-left:auto;">11 pantallas</span></div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>C1.1</td><td>Home Page Web (desktop responsive)</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>C1.2</td><td>Perfil de Negocio Web (SEO page)</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>C1.3</td><td>Página de Pricing</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>C1.4</td><td>Landing de Ciudad ("Negocios en Lechería")</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>C1.5</td><td>Landing de Categoría ("Gastronomía en Lechería")</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>C2.1</td><td>About / Nosotros</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>C2.2</td><td>FAQ</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>C2.3</td><td>Términos y Condiciones (web)</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>C2.4</td><td>Política de Privacidad (web)</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>C2.5</td><td>Login Admin</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>C2.6</td><td>404 / Error page</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="module-divider"></div>
+
+  <!-- ===== MÓDULO D ===== -->
+  <div id="modulo-d" class="section-header">🖥️ Módulo D — Admin Web Desktop <span style="background:#EDB21D; color:#002E5B; font-size:11px; padding:2px 8px; border-radius:6px; margin-left:auto;">27 pantallas</span></div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr style="background:#f0f7ff;"><td colspan="4" style="font-weight:700; font-size:11px; color:#002E5B; letter-spacing:0.06em; text-transform:uppercase; padding:8px 14px;">D1 — Dashboard + Queues críticas (P1)</td></tr>
+      <tr><td>D1.1</td><td>Dashboard Principal Admin</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>D1.2</td><td>Queue de Verificación</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>D1.3</td><td>Queue de Moderación de Reviews</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>D1.4</td><td>Queue de Moderación de Fotos</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>D1.5</td><td>CRM Negocios (tabla paginada)</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>D1.6</td><td>Detalle de Negocio (vista Admin)</td><td><span class="badge p1">P1</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr style="background:#f0f7ff;"><td colspan="4" style="font-weight:700; font-size:11px; color:#002E5B; letter-spacing:0.06em; text-transform:uppercase; padding:8px 14px;">D2–D4 — Verification, Billing, Ops (P2/P3)</td></tr>
+      <tr><td>D2.1–D2.6</td><td>Review T1 · Review T2 · Compliance Catálogo · Field Team · Asignar · Checklist Inspección</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>D3.1–D3.7</td><td>Suscripciones · Pago Manual · Billing Ops · Data Quality · Kanban · Disputas · Soporte</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>D3.8–D3.9</td><td>Health Dashboard · Dashboard Revenue</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>D4.1–D4.6</td><td>Suspender · Merge · Inspectores · Duplicados · Mapeo Categorías · Reportes</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="module-divider"></div>
+
+  <!-- ===== MÓDULO E ===== -->
+  <div id="modulo-e" class="section-header">💼 Módulo E — Web Business Portal <span style="background:#EDB21D; color:#002E5B; font-size:11px; padding:2px 8px; border-radius:6px; margin-left:auto;">7 pantallas</span></div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>E1</td><td>Dashboard (Business Portal web)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>E2</td><td>Editor de Perfil (web)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>E3</td><td>Gestión de Fotos (web)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>E4</td><td>Catálogo (web)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>E5</td><td>Reviews (web)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>E6</td><td>Suscripción y Billing (web)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>E7</td><td>Analytics (web)</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="module-divider"></div>
+
+  <!-- ===== MÓDULO F ===== -->
+  <div id="modulo-f" class="section-header">✉️ Módulo F — Email Templates <span style="background:#EDB21D; color:#002E5B; font-size:11px; padding:2px 8px; border-radius:6px; margin-left:auto;">10 diseños</span></div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; margin-bottom:8px;">
+    <table><thead><tr><th>#</th><th>Email</th><th>P</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>F1</td><td>Bienvenida</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>F2</td><td>Verificación Aprobada</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>F3</td><td>Recordatorio Subir a Tier 2</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>F4</td><td>Verificación Rechazada</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>F5</td><td>Nueva Review Recibida</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>F6</td><td>Trial Premium Terminando (día 53)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>F7</td><td>Pago Fallido</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>F8</td><td>Dunning (D0 / D3 / D7)</td><td><span class="badge p2">P2</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>F9</td><td>Inspección Programada</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+      <tr><td>F10</td><td>Solicitud de Review al Cliente</td><td><span class="badge p3">P3</span></td><td><span class="badge new">🆕</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="module-divider"></div>
+
+  <!-- ===== ESTADO DE EJECUCIÓN ===== -->
+  <div id="ejecucion" class="section-header">🚀 Estado de Ejecución de Batches</div>
+  <div style="background:white; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb;">
+    <table><thead><tr><th>Batch</th><th># Pantallas</th><th>Estado</th><th>Draft IDs</th></tr></thead>
+    <tbody>
+      <tr><td><strong>A1 primera oleada (A1.1–A1.6)</strong></td><td>6</td><td><span class="badge done">🔍 Auditado</span></td><td style="font-family:monospace; font-size:11px; color:#555;">c7a1bb77, b83044f3, a2622a8e, d92028d9, a87e18e5, b1158dee</td></tr>
+      <tr><td>A1 segunda oleada (A1.7)</td><td>1</td><td><span class="badge new" style="background:#fff7ed;color:#c2410c;">⏳ Pendiente</span></td><td>—</td></tr>
+      <tr><td>A2 · A3 · A4 · A5 · A6</td><td>27</td><td><span class="badge new" style="background:#fff7ed;color:#c2410c;">⏳ Pendiente</span></td><td>—</td></tr>
+      <tr><td>B1 · B2 · B3 · B4 · B5</td><td>33</td><td><span class="badge new" style="background:#fff7ed;color:#c2410c;">⏳ Pendiente</span></td><td>—</td></tr>
+      <tr><td>C1 · C2</td><td>11</td><td><span class="badge new" style="background:#fff7ed;color:#c2410c;">⏳ Pendiente</span></td><td>—</td></tr>
+      <tr><td>D1 · D2 · D3 · D4</td><td>27</td><td><span class="badge new" style="background:#fff7ed;color:#c2410c;">⏳ Pendiente</span></td><td>—</td></tr>
+      <tr><td>E1–E7</td><td>7</td><td><span class="badge new" style="background:#fff7ed;color:#c2410c;">⏳ Pendiente</span></td><td>—</td></tr>
+      <tr><td>F1–F10</td><td>10</td><td><span class="badge new" style="background:#fff7ed;color:#c2410c;">⏳ Pendiente</span></td><td>—</td></tr>
+    </tbody></table>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div style="border-top:1px solid #e5e7eb; padding:20px; text-align:center; font-size:12px; color:#9ca3af; margin-top:40px;">
+  Ventanal — Fase de Mockups · Branch <code style="background:#f3f4f6; padding:1px 6px; border-radius:4px;">mockups</code> ·
+  <a href="index.html" style="color:#002E5B; font-weight:600;">← Galería de pantallas</a>
+</div>
+
+</body>
+</html>
