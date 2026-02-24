@@ -5,12 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ventanal Mobile Home</title>
   <meta name="view-transition" content="same-origin">
-  <link rel="prefetch" href="https://p.superdesign.dev/draft/c7a1bb77-91db-45d2-9664-cdb138c9b363" as="document">
-  <link rel="prefetch" href="https://p.superdesign.dev/draft/b83044f3-cb29-40c7-b24d-041a74536221" as="document">
-  <link rel="prefetch" href="https://p.superdesign.dev/draft/a2622a8e-ba47-41eb-835a-53d8a5287407" as="document">
-  <link rel="prefetch" href="https://p.superdesign.dev/draft/d92028d9-4628-45fa-8bd7-c883e2df01e9" as="document">
-  <link rel="prefetch" href="https://p.superdesign.dev/draft/a87e18e5-6746-4d80-9489-0e3c130d1bfe" as="document">
-  <link rel="prefetch" href="https://p.superdesign.dev/draft/b1158dee-eb6a-40c8-852b-96c1ada09d5c" as="document">
   <script src="https://cdn.tailwindcss.com/"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="https://unpkg.com/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
@@ -23,207 +17,430 @@
     .animate-pulse-red { animation: pulse-red 1s ease-in-out infinite; }
     [v-cloak] { display: none; }
     @view-transition { navigation: auto; }
-    ::view-transition-old(main-nav), ::view-transition-new(main-nav),
-    ::view-transition-old(bottom-bar), ::view-transition-new(bottom-bar) {
-      animation: none;
-      mix-blend-mode: normal;
-    }
-    ::view-transition-old(main-content) {
-      animation: 0.25s ease-out both fade-out;
-    }
-    ::view-transition-new(main-content) {
-      animation: 0.25s ease-in 0.1s both fade-in;
-    }
-    @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
-    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    ::view-transition-old(main-nav), ::view-transition-new(main-nav) { animation: none; mix-blend-mode: normal; }
   </style>
 </head>
 <body>
   <div id="immq" class="max-w-[390px] h-[844px] mx-auto flex flex-col bg-[#F8F9FC] text-[#002E5B] relative overflow-hidden">
     <!-- HEADER -->
-    <sd-component data-component-id="a1935c12-e470-4f2f-b0a3-75f13c1ba95f" data-component-name="MobileHeader" data-component-props='{"currentLocation":"Lechería, Anzoátegui","activeMode":"usuario","locationHref":"#location"}'>
-      <div data-sd-wrapper="true">
-        <header class="shrink-0 pt-14 px-5 pb-6 bg-white rounded-b-[32px] shadow-sm relative z-20">
-          <div class="flex items-center justify-between relative">
-            <div class="flex-shrink-0">
-              <div class="flex items-center p-1 bg-gray-100 rounded-2xl shadow-inner gap-1">
-                <button id="toggle-usuario" class="w-9 h-9 flex items-center justify-center rounded-xl transition-all bg-[#002E5B] text-white shadow-md"><iconify-icon icon="lucide:user" class="text-lg"></iconify-icon></button>
-                <button id="toggle-negocio" class="w-9 h-9 flex items-center justify-center rounded-xl transition-all text-gray-500 hover:bg-gray-200"><iconify-icon icon="lucide:briefcase" class="text-lg"></iconify-icon></button>
-              </div>
+    <sd-component data-component-id="a1935c12-e470-4f2f-b0a3-75f13c1ba95f" data-component-name="MobileHeader">
+      <header class="shrink-0 pt-14 px-5 pb-6 bg-white rounded-b-[32px] shadow-sm relative z-20">
+        <div class="flex items-center justify-between relative">
+          <div class="flex-shrink-0">
+            <div class="flex items-center p-1 bg-gray-100 rounded-2xl shadow-inner gap-1">
+              <button id="toggle-usuario" class="w-9 h-9 flex items-center justify-center rounded-xl transition-all bg-[#002E5B] text-white shadow-md"><iconify-icon icon="lucide:user" class="text-lg"></iconify-icon></button>
+              <button id="toggle-negocio" class="w-9 h-9 flex items-center justify-center rounded-xl transition-all text-gray-500 hover:bg-gray-200"><iconify-icon icon="lucide:briefcase" class="text-lg"></iconify-icon></button>
             </div>
-            <div class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
-              <a id="location-link" href="#location" class="flex items-center gap-1 group">
+          </div>
+          
+          <div id="location-dropdown-wrapper" class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+            <button id="location-trigger" onclick="toggleLocationDropdown()" class="flex flex-col items-center px-4 py-1.5 rounded-2xl hover:bg-gray-50 transition-all cursor-pointer active:scale-95 group focus:outline-none">
+              <div class="flex items-center gap-1">
                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Ubicación</span>
-                <iconify-icon icon="lucide:chevron-down" class="text-[#EDB21D] text-xs transition-transform group-hover:translate-y-0.5"></iconify-icon>
-              </a>
-              <div class="flex items-center gap-1 mt-0.5"><span class="text-[#002E5B] text-sm font-extrabold">Lechería, Anzoátegui</span></div>
-            </div>
-            <div class="flex items-center gap-2.5">
-              <button id="notif-bell-btn" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100 shadow-sm relative hover:bg-white transition-all active:scale-95">
-                <iconify-icon icon="lucide:bell" class="text-gray-600 text-xl"></iconify-icon>
-                <span class="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                <iconify-icon id="location-chevron" icon="lucide:chevron-down" class="text-[#EDB21D] text-xs transition-transform duration-200 ease-out"></iconify-icon>
+              </div>
+              <div class="mt-0.5">
+                <span id="current-location-text" class="text-[#002E5B] text-sm font-extrabold whitespace-nowrap">Lechería Anzoátegui</span>
+              </div>
+            </button>
+
+            <div id="location-menu" class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 origin-top transform transition-all duration-200 ease-out opacity-0 -translate-y-2">
+              <button onclick="selectLocation('Lechería Anzoátegui')" class="location-option w-full flex items-center px-4 py-3 hover:bg-[#002E5B]/5 transition-colors text-left">
+                <iconify-icon icon="lucide:check" class="text-[#002E5B] mr-3 text-lg"></iconify-icon>
+                <span class="font-bold text-[#002E5B] text-sm">Lechería Anzoátegui</span>
               </button>
-              <a id="user-avatar-trigger" href="https://p.superdesign.dev/draft/b83044f3-cb29-40c7-b24d-041a74536221" class="w-10 h-10 rounded-full bg-[#EDB21D]/10 border-2 border-white shadow-sm overflow-hidden flex items-center justify-center cursor-pointer active:scale-95 transition-transform">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Juan&backgroundColor=EDB21D&baseColor=002E5B" alt="Juan Avatar" class="w-full h-full object-cover">
-              </a>
+              <button onclick="selectLocation('Barcelona Anzoátegui')" class="location-option w-full flex items-center px-4 py-3 hover:bg-[#002E5B]/5 transition-colors text-left">
+                <iconify-icon icon="lucide:check" class="text-[#002E5B] mr-3 text-lg invisible"></iconify-icon>
+                <span class="font-medium text-gray-600 text-sm">Barcelona Anzoátegui</span>
+              </button>
+              <button onclick="selectLocation('Puerto La Cruz Anzoátegui')" class="location-option w-full flex items-center px-4 py-3 hover:bg-[#002E5B]/5 transition-colors text-left">
+                <iconify-icon icon="lucide:check" class="text-[#002E5B] mr-3 text-lg invisible"></iconify-icon>
+                <span class="font-medium text-gray-600 text-sm">Puerto La Cruz Anzoátegui</span>
+              </button>
             </div>
           </div>
-        </header>
-      </div>
+
+          <div class="flex items-center gap-2.5">
+            <button id="notif-bell-btn" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100 shadow-sm relative hover:bg-white transition-all active:scale-95">
+              <iconify-icon icon="lucide:bell" class="text-gray-600 text-xl"></iconify-icon>
+              <span class="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+            </button>
+            <a id="user-avatar-trigger" href="javascript:void(0)" class="w-10 h-10 rounded-full bg-[#EDB21D]/10 border-2 border-white shadow-sm overflow-hidden flex items-center justify-center cursor-pointer active:scale-95 transition-transform">
+              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Juan&backgroundColor=EDB21D&baseColor=002E5B" alt="Juan Avatar" class="w-full h-full object-cover">
+            </a>
+          </div>
+        </div>
+      </header>
     </sd-component>
 
-    <!-- GREETING -->
-    <sd-component data-component-id="d9e86635-5d54-4580-b570-eeb43b7f2e2f" data-component-name="UserGreeting" data-component-props='{"userName":"Juan","emoji":"👋"}'>
-      <div data-sd-wrapper="true">
-        <div id="i2trv" class="px-5 pt-6 pb-2"><a href="https://p.superdesign.dev/draft/c7a1bb77-91db-45d2-9664-cdb138c9b363" id="greeting-splash-link" class="block hover:opacity-80 transition-opacity"><h1 id="iodq1" class="text-xl font-extrabold tracking-tight text-[#002E5B]">¡Hola, Juan! 👋</h1></a></div>
-      </div>
-    </sd-component>
+    <main class="flex-1 overflow-y-auto pb-20">
+      <!-- PANEL: INICIO -->
+      <div id="panel-inicio" class="panel-content">
+        <sd-component data-component-id="d9e86635-5d54-4580-b570-eeb43b7f2e2f" data-component-name="UserGreeting">
+          <div class="px-5 pt-6 pb-2"><h1 class="text-xl font-extrabold tracking-tight text-[#002E5B]">¡Hola, Juan! 👋</h1></div>
+        </sd-component>
 
-    <main class="flex-1 overflow-y-auto pb-[100px]" style="view-transition-name: main-content;">
-      <!-- SEARCH BAR -->
-      <sd-component data-component-id="f0792393-5d7d-4802-abae-02c4e905ff26" data-component-name="SearchBar" data-component-props='{"placeholder":"¿Qué necesitas hoy?"}'>
-        <div data-sd-wrapper="true">
-          <div class="px-5 mt-4">
-            <div class="relative flex items-center">
-              <div class="absolute left-4 text-gray-400 pointer-events-none"><iconify-icon icon="lucide:search" class="text-xl"></iconify-icon></div>
-              <input id="main-search-input" type="text" placeholder="¿Qué necesitas hoy?" class="w-full h-14 bg-white rounded-2xl pl-12 pr-12 text-sm font-medium border-none shadow-sm focus:ring-2 focus:ring-[#002E5B] transition-all outline-none"/>
-              <button id="mic-btn" class="absolute right-4 text-[#002E5B] flex items-center justify-center"><iconify-icon icon="lucide:mic" class="text-xl transition-all"></iconify-icon></button>
+        <!-- SEARCH BAR -->
+        <div class="px-5 mt-4">
+          <div class="relative flex items-center">
+            <div class="absolute left-4 text-gray-400 pointer-events-none"><iconify-icon icon="lucide:search" class="text-xl"></iconify-icon></div>
+            <input id="main-search-input" type="text" placeholder="¿Qué necesitas hoy?" class="w-full h-14 bg-white rounded-2xl pl-12 pr-12 text-sm font-medium border-none shadow-sm focus:ring-2 focus:ring-[#002E5B] transition-all outline-none"/>
+            <button id="mic-btn" class="absolute right-4 text-[#002E5B] flex items-center justify-center"><iconify-icon icon="lucide:mic" class="text-xl transition-all"></iconify-icon></button>
+          </div>
+        </div>
+
+        <!-- RECENT SEARCHES -->
+        <div class="px-5 mt-5">
+          <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Búsquedas recientes</h4>
+          <div class="flex gap-2 overflow-x-auto no-scrollbar mt-3 pb-1">
+            <button class="flex items-center gap-2 bg-white border border-gray-100 px-3 py-1.5 rounded-full shadow-sm shrink-0 active:scale-95 transition-transform"><iconify-icon icon="lucide:clock" class="text-gray-400 text-xs"></iconify-icon><span class="text-[11px] font-semibold text-[#002E5B]">plomero lechería</span></button>
+            <button class="flex items-center gap-2 bg-white border border-gray-100 px-3 py-1.5 rounded-full shadow-sm shrink-0 active:scale-95 transition-transform"><iconify-icon icon="lucide:clock" class="text-gray-400 text-xs"></iconify-icon><span class="text-[11px] font-semibold text-[#002E5B]">café cerca de mí</span></button>
+            <button class="flex items-center gap-2 bg-white border border-gray-100 px-3 py-1.5 rounded-full shadow-sm shrink-0 active:scale-95 transition-transform"><iconify-icon icon="lucide:clock" class="text-gray-400 text-xs"></iconify-icon><span class="text-[11px] font-semibold text-[#002E5B]">odontología</span></button>
+          </div>
+        </div>
+
+        <!-- PROMO BANNER -->
+        <div class="px-5 mt-6">
+          <div class="bg-gradient-to-br from-[#002E5B] to-[#00478B] rounded-3xl p-5 relative overflow-hidden">
+            <div class="relative z-10">
+              <span class="bg-[#EDB21D] text-[#002E5B] text-[10px] font-bold px-2 py-1 rounded-lg uppercase">Premium</span>
+              <h3 class="text-white font-bold text-lg mt-2 leading-tight">¡Únete a Ventanal!<br/><span class="text-[#EDB21D]">60 días gratis de visibilidad.</span></h3>
+              <a href="#" id="promo-cta" class="inline-block mt-4 bg-white text-[#002E5B] text-xs font-bold px-4 py-2.5 rounded-xl shadow-lg active:scale-95 transition-transform">Empezar ahora</a>
+            </div>
+            <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-white/10 rounded-full"></div>
+            <div class="absolute -top-10 -right-4 w-24 h-24 bg-[#EDB21D]/20 rounded-full blur-2xl"></div>
+          </div>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="mt-8">
+          <div class="px-5 flex items-center justify-between mb-4"><h2 class="font-extrabold text-lg">Categorías</h2><a href="#" id="view-all-cats" class="text-[#002E5B] hover:text-[#EDB21D] text-sm font-bold transition-colors">Ver todas</a></div>
+          <div class="flex gap-4 overflow-x-auto px-5 no-scrollbar">
+            <div class="flex flex-col items-center gap-2 shrink-0"><div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center text-red-500"><iconify-icon icon="lucide:stethoscope" class="text-2xl"></iconify-icon></div><span class="text-xs font-semibold">Salud</span></div>
+            <div class="flex flex-col items-center gap-2 shrink-0"><div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-500"><iconify-icon icon="lucide:utensils" class="text-2xl"></iconify-icon></div><span class="text-xs font-semibold">Gastronomía</span></div>
+            <div class="flex flex-col items-center gap-2 shrink-0"><div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500"><iconify-icon icon="lucide:home" class="text-2xl"></iconify-icon></div><span class="text-xs font-semibold">Hogar</span></div>
+            <div class="flex flex-col items-center gap-2 shrink-0"><div class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-600"><iconify-icon icon="lucide:car" class="text-2xl"></iconify-icon></div><span class="text-xs font-semibold">Automotriz</span></div>
+            <div class="flex flex-col items-center gap-2 shrink-0"><div class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-500"><iconify-icon icon="lucide:graduation-cap" class="text-2xl"></iconify-icon></div><span class="text-xs font-semibold">Educación</span></div>
+          </div>
+        </div>
+
+        <!-- FEATURED -->
+        <div class="mt-8 px-5">
+          <div class="flex items-center gap-2 mb-4"><iconify-icon icon="lucide:star" class="text-[#EDB21D] text-xl"></iconify-icon><h2 class="font-extrabold text-lg">Destacado de la semana</h2></div>
+          <div class="relative rounded-[28px] overflow-hidden shadow-xl aspect-[16/10] flex flex-col justify-end p-6 group">
+            <img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?auto=format&fit=crop&q=80&w=800" alt="Featured" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#002E5B] via-[#002E5B]/40 to-transparent"></div>
+            <div class="relative z-10">
+              <span class="bg-[#EDB21D] text-[#002E5B] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Empresa del Mes</span>
+              <h3 class="text-white font-extrabold text-2xl mt-2">Vainilla & Chocolate</h3>
+              <button class="w-full mt-4 bg-[#25D366] text-white py-3 rounded-2xl flex items-center justify-center gap-2 font-bold text-sm shadow-lg active:scale-[0.98] transition-all"><iconify-icon icon="logos:whatsapp-icon" class="text-lg"></iconify-icon><span>Contactar por WhatsApp</span></button>
             </div>
           </div>
         </div>
-      </sd-component>
 
-      <!-- RECENT SEARCHES -->
-      <sd-component data-component-id="d3bc6ad6-a9c1-459c-b7f6-facbcd0b0cf9" data-component-name="RecentSearches" data-component-props='{"searches":[{"text":"plomero lechería"},{"text":"café cerca de mí"},{"text":"odontología"}]}'>
-        <div data-sd-wrapper="true">
-          <div class="px-5 mt-5">
-            <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Búsquedas recientes</h4>
-            <div class="flex gap-2 overflow-x-auto no-scrollbar mt-3 pb-1">
-              <button class="flex items-center gap-2 bg-white border border-gray-100 px-3 py-1.5 rounded-full shadow-sm shrink-0 active:scale-95 transition-transform"><iconify-icon icon="lucide:clock" class="text-gray-400 text-xs"></iconify-icon><span class="text-[11px] font-semibold text-[#002E5B]">plomero lechería</span></button>
-              <button class="flex items-center gap-2 bg-white border border-gray-100 px-3 py-1.5 rounded-full shadow-sm shrink-0 active:scale-95 transition-transform"><iconify-icon icon="lucide:clock" class="text-gray-400 text-xs"></iconify-icon><span class="text-[11px] font-semibold text-[#002E5B]">café cerca de mí</span></button>
-              <button class="flex items-center gap-2 bg-white border border-gray-100 px-3 py-1.5 rounded-full shadow-sm shrink-0 active:scale-95 transition-transform"><iconify-icon icon="lucide:clock" class="text-gray-400 text-xs"></iconify-icon><span class="text-[11px] font-semibold text-[#002E5B]">odontología</span></button>
-            </div>
-          </div>
-        </div>
-      </sd-component>
-
-      <!-- PROMO BANNER -->
-      <sd-component data-component-id="8e2ac84f-3f78-461f-acdb-d4f77410b223" data-component-name="PromoBanner" data-component-props='{"isVisible":true,"showBadge":true,"badgeText":"Premium","title":"¡Únete a Ventanal!","highlightedText":"60 días gratis de visibilidad.","buttonText":"Empezar ahora","ctaLink":"#join-premium"}'>
-        <div data-sd-wrapper="true">
-          <div class="px-5 mt-6">
-            <div class="bg-gradient-to-br from-[#002E5B] to-[#00478B] rounded-3xl p-5 relative overflow-hidden">
-              <div class="relative z-10">
-                <span class="bg-[#EDB21D] text-[#002E5B] text-[10px] font-bold px-2 py-1 rounded-lg uppercase">Premium</span>
-                <h3 class="text-white font-bold text-lg mt-2 leading-tight">¡Únete a Ventanal!<br/><span class="text-[#EDB21D]">60 días gratis de visibilidad.</span></h3>
-                <a href="#join-premium" class="inline-block mt-4 bg-white text-[#002E5B] text-xs font-bold px-4 py-2.5 rounded-xl shadow-lg active:scale-95 transition-transform">Empezar ahora</a>
-              </div>
-              <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-white/10 rounded-full"></div>
-              <div class="absolute -top-10 -right-4 w-24 h-24 bg-[#EDB21D]/20 rounded-full blur-2xl"></div>
-            </div>
-          </div>
-        </div>
-      </sd-component>
-
-      <!-- CATEGORIES -->
-      <sd-component data-component-id="886af854-d2e8-4784-aa1f-079b62f5fa97" data-component-name="CategoryGrid" data-component-props='{"viewAllHref":"#"}'>
-        <div data-sd-wrapper="true">
-          <div class="mt-8">
-            <div class="px-5 flex items-center justify-between mb-4"><h2 class="font-extrabold text-lg">Categorías</h2><a href="https://p.superdesign.dev/draft/a2622a8e-ba47-41eb-835a-53d8a5287407" id="view-all-cats" class="text-[#002E5B] hover:text-[#EDB21D] text-sm font-bold transition-colors underline-offset-2 hover:underline">Ver todas</a></div>
-            <div class="flex gap-4 overflow-x-auto px-5 no-scrollbar">
-              <div class="flex flex-col items-center gap-2 shrink-0"><div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center text-red-500"><iconify-icon icon="lucide:stethoscope" class="text-2xl"></iconify-icon></div><span class="text-xs font-semibold">Salud</span></div>
-              <div class="flex flex-col items-center gap-2 shrink-0"><div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-500"><iconify-icon icon="lucide:utensils" class="text-2xl"></iconify-icon></div><span class="text-xs font-semibold">Gastronomía</span></div>
-              <div class="flex flex-col items-center gap-2 shrink-0"><div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500"><iconify-icon icon="lucide:home" class="text-2xl"></iconify-icon></div><span class="text-xs font-semibold">Hogar</span></div>
-              <div class="flex flex-col items-center gap-2 shrink-0"><div class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-600"><iconify-icon icon="lucide:car" class="text-2xl"></iconify-icon></div><span class="text-xs font-semibold">Automotriz</span></div>
-              <div class="flex flex-col items-center gap-2 shrink-0"><div class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-500"><iconify-icon icon="lucide:graduation-cap" class="text-2xl"></iconify-icon></div><span class="text-xs font-semibold">Educación</span></div>
-            </div>
-          </div>
-        </div>
-      </sd-component>
-
-      <!-- FEATURED BUSINESS -->
-      <sd-component data-component-id="5c1f0249-7e5a-425f-8e7d-56e367d33d0b" data-component-name="FeaturedBusiness" data-component-props='{"name":"Vainilla & Chocolate","category":"Gastronomía","rating":"5.0","badge":"Empresa del Mes","imageUrl":"https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?auto=format&fit=crop&q=80&w=800","ctaText":"Contactar por WhatsApp"}'>
-        <div data-sd-wrapper="true">
-          <div class="mt-8 px-5">
-            <div class="flex items-center gap-2 mb-4"><iconify-icon icon="lucide:star" class="text-[#EDB21D] text-xl"></iconify-icon><h2 class="font-extrabold text-lg">Destacado de la semana</h2></div>
-            <div class="relative rounded-[28px] overflow-hidden shadow-xl aspect-[16/10] flex flex-col justify-end p-6 group">
-              <img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?auto=format&fit=crop&q=80&w=800" alt="Pastelería" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-              <div class="absolute inset-0 bg-gradient-to-t from-[#002E5B] via-[#002E5B]/40 to-transparent"></div>
-              <div class="relative z-10">
-                <span class="bg-[#EDB21D] text-[#002E5B] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Empresa del Mes</span>
-                <h3 class="text-white font-extrabold text-2xl mt-2">Vainilla & Chocolate</h3>
-                <div class="flex items-center gap-3 mt-1.5">
-                  <span class="text-white/80 text-xs font-medium">Gastronomía</span>
-                  <div class="flex items-center gap-1 bg-white/20 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-bold text-white"><iconify-icon icon="lucide:star" class="fill-[#EDB21D] text-[#EDB21D]"></iconify-icon><span>5.0</span></div>
-                  <div class="flex items-center gap-1"><iconify-icon icon="lucide:award" class="text-[#EDB21D] text-sm"></iconify-icon><span class="text-[11px] text-white/70">Negocio Certificado</span></div>
-                </div>
-                <button class="w-full mt-4 bg-[#25D366] text-white py-3 rounded-2xl flex items-center justify-center gap-2 font-bold text-sm shadow-lg active:scale-[0.98] transition-all"><iconify-icon icon="logos:whatsapp-icon" class="text-lg"></iconify-icon><span>Contactar por WhatsApp</span></button>
+        <!-- POPULAR -->
+        <div class="mt-8 px-5">
+          <h2 class="font-extrabold text-lg mb-4 tracking-tight">Populares cerca de ti</h2>
+          <div class="space-y-4">
+            <div class="bg-white rounded-[28px] p-4 flex gap-4 shadow-sm border border-gray-50">
+              <div class="w-24 h-24 rounded-2xl overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=200" class="w-full h-full object-cover"/></div>
+              <div class="flex-1 flex flex-col justify-between py-0.5">
+                <div><span class="text-[10px] font-bold uppercase tracking-wider text-orange-500">Gastronomía</span><h3 class="font-bold text-[15px] mt-1 line-clamp-1 text-[#002E5B]">Café Artesanal El Morro</h3></div>
+                <div class="flex items-center justify-between mt-2"><span class="text-[11px] font-medium text-gray-400">A 1.2 km de ti</span><button class="bg-[#25D366] text-white text-[10px] font-bold px-3 py-1.5 rounded-lg active:scale-95 transition-transform">Chat</button></div>
               </div>
             </div>
           </div>
         </div>
-      </sd-component>
 
-      <!-- POPULAR BUSINESSES -->
-      <div class="mt-8 px-5">
-        <h2 class="font-extrabold text-lg tracking-tight mb-4">Populares cerca de ti</h2>
-        <div class="space-y-4">
-          <sd-component data-component-id="80acc47b-f975-4a66-a6e7-4308c93cc469" instance="8d7a123a-7182-4161-9f23-8829c91f1a01" data-component-name="BusinessCard" data-component-props='{"imageUrl":"https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=200","title":"Café Artesanal El Morro","category":"Gastronomía","rating":"4.9","distance":"1.2 km","isVerified":true,"verificationLabel":"Contacto Verificado","buttonLabel":"Chat","href":"https://p.superdesign.dev/draft/b1158dee-eb6a-40c8-852b-96c1ada09d5c"}'>
-            <div data-sd-wrapper="true">
-              <a href="https://p.superdesign.dev/draft/b1158dee-eb6a-40c8-852b-96c1ada09d5c" class="bg-white rounded-[28px] p-4 flex gap-4 shadow-sm border border-gray-50 hover:border-gray-200 transition-all block">
-                <div class="w-24 h-24 rounded-2xl overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=200" alt="Café" class="w-full h-full object-cover"/></div>
-                <div class="flex-1 flex flex-col justify-between py-0.5">
-                  <div>
-                    <div class="flex items-center justify-between"><span class="text-[10px] font-bold uppercase tracking-wider text-orange-500">Gastronomía</span><div class="flex items-center gap-1 bg-[#EDB21D]/10 px-1.5 py-0.5 rounded text-[10px] font-bold text-[#EDB21D]"><iconify-icon icon="lucide:star" class="fill-current"></iconify-icon><span>4.9</span></div></div>
-                    <h3 class="font-bold text-[15px] mt-1 line-clamp-1 text-[#002E5B]">Café Artesanal El Morro</h3>
-                    <div class="flex items-center gap-1 mt-1"><iconify-icon icon="lucide:shield-check" class="text-blue-500 text-sm"></iconify-icon><span class="text-[11px] text-gray-500">Contacto Verificado</span></div>
-                  </div>
-                  <div class="flex items-center justify-between mt-2"><span class="text-[11px] font-medium text-gray-400">A 1.2 km de ti</span><button class="flex items-center gap-1.5 bg-[#25D366] text-white text-[10px] font-bold px-3 py-1.5 rounded-lg active:scale-95 transition-transform"><iconify-icon icon="logos:whatsapp-icon" class="text-xs"></iconify-icon><span>Chat</span></button></div>
-                </div>
-              </div>
-            </div>
-          </sd-component>
-
-          <sd-component data-component-id="80acc47b-f975-4a66-a6e7-4308c93cc469" instance="8d7a123a-7182-4161-9f23-8829c91f1a02" data-component-name="BusinessCard" data-component-props='{"imageUrl":"https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=200","title":"Clínica Dental San José","category":"Salud","rating":"5.0","distance":"0.8 km","isVerified":true,"verificationLabel":"Negocio Certificado","buttonLabel":"Citar","href":"https://p.superdesign.dev/draft/a87e18e5-6746-4d80-9489-0e3c130d1bfe"}'>
-            <div data-sd-wrapper="true">
-              <a href="https://p.superdesign.dev/draft/a87e18e5-6746-4d80-9489-0e3c130d1bfe" class="bg-white rounded-[28px] p-4 flex gap-4 shadow-sm border border-gray-50 hover:border-gray-200 transition-all block">
-                <div class="w-24 h-24 rounded-2xl overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=200" alt="Doctor" class="w-full h-full object-cover"/></div>
-                <div class="flex-1 flex flex-col justify-between py-0.5">
-                  <div>
-                    <div class="flex items-center justify-between"><span class="text-[10px] font-bold uppercase tracking-wider text-red-500">Salud</span><div class="flex items-center gap-1 bg-[#EDB21D]/10 px-1.5 py-0.5 rounded text-[10px] font-bold text-[#EDB21D]"><iconify-icon icon="lucide:star" class="fill-current"></iconify-icon><span>5.0</span></div></div>
-                    <h3 class="font-bold text-[15px] mt-1 line-clamp-1 text-[#002E5B]">Clínica Dental San José</h3>
-                    <div class="flex items-center gap-1 mt-1"><iconify-icon icon="lucide:award" class="text-[#EDB21D] text-sm"></iconify-icon><span class="text-[11px] text-gray-500">Negocio Certificado</span></div>
-                  </div>
-                  <div class="flex items-center justify-between mt-2"><span class="text-[11px] font-medium text-gray-400">A 0.8 km de ti</span><button class="flex items-center gap-1.5 bg-[#25D366] text-white text-[10px] font-bold px-3 py-1.5 rounded-lg active:scale-95 transition-transform"><iconify-icon icon="logos:whatsapp-icon" class="text-xs"></iconify-icon><span>Citar</span></button></div>
-                </div>
-              </div>
-            </div>
-          </sd-component>
+        <!-- TRUST -->
+        <div class="py-12 flex flex-col items-center justify-center opacity-40">
+          <iconify-icon icon="lucide:building-2" class="text-4xl mb-2"></iconify-icon>
+          <p class="text-sm font-semibold">Más de 20,000 negocios verificados</p>
         </div>
       </div>
 
-      <!-- TRUST INDICATOR -->
-      <sd-component data-component-id="23d9a1f5-19e4-44b4-8395-8854890c9103" data-component-name="TrustIndicator" data-component-props='{"count":"20,000"}'>
-        <div data-sd-wrapper="true">
-          <div class="py-12 flex flex-col items-center justify-center opacity-40">
-            <iconify-icon icon="lucide:building-2" class="text-4xl mb-2"></iconify-icon>
-            <p class="text-sm font-semibold">Más de 20,000 negocios verificados</p>
+      <!-- PANEL: ACTIVIDAD -->
+      <div id="panel-actividad" class="panel-content hidden">
+        <div class="px-5 pt-6 pb-4">
+          <h1 class="text-xl font-extrabold text-[#002E5B]">Actividad</h1>
+        </div>
+        
+        <div class="px-5 flex gap-3 mb-6 overflow-x-auto no-scrollbar">
+          <button id="btn-filter-transacciones" onclick="switchActividadTab('transacciones')" class="bg-[#002E5B] text-white rounded-full px-4 py-2 text-xs font-bold transition-all">Transacciones</button>
+          <button id="btn-filter-reviews" onclick="switchActividadTab('reviews')" class="bg-white border border-gray-200 text-gray-500 rounded-full px-4 py-2 text-xs font-semibold transition-all">Reviews</button>
+        </div>
+
+        <div id="actividad-transacciones" class="px-5 space-y-3">
+          <!-- Card 1 -->
+          <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex justify-between items-start">
+            <div>
+              <h3 class="font-bold text-[15px] text-[#002E5B]">Café Artesanal El Morro</h3>
+              <p class="text-[10px] uppercase tracking-wider text-orange-500 font-bold mt-0.5">Gastronomía</p>
+              <p class="text-[11px] text-gray-400 mt-1.5">Hace 2 días</p>
+            </div>
+            <span class="bg-green-50 text-green-600 text-[10px] font-bold px-2 py-1 rounded-lg">Completada</span>
+          </div>
+          <!-- Card 2 -->
+          <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex justify-between items-start">
+            <div>
+              <h3 class="font-bold text-[15px] text-[#002E5B]">Clínica Dental San José</h3>
+              <p class="text-[10px] uppercase tracking-wider text-red-500 font-bold mt-0.5">Salud</p>
+              <p class="text-[11px] text-gray-400 mt-1.5">Hace 5 días</p>
+            </div>
+            <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg">En progreso</span>
+          </div>
+          <!-- Card 3 -->
+          <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex justify-between items-start">
+            <div>
+              <h3 class="font-bold text-[15px] text-[#002E5B]">Taller Automotriz Pérez</h3>
+              <p class="text-[10px] uppercase tracking-wider text-slate-500 font-bold mt-0.5">Automotriz</p>
+              <p class="text-[11px] text-gray-400 mt-1.5">Hace 1 semana</p>
+            </div>
+            <span class="bg-amber-50 text-amber-600 text-[10px] font-bold px-2 py-1 rounded-lg">Pendiente</span>
           </div>
         </div>
-      </sd-component>
+
+        <div id="actividad-reviews" class="px-5 space-y-3 hidden">
+          <!-- Review 1 -->
+          <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-[15px] text-[#002E5B]">Café Artesanal El Morro</h3>
+              <div class="flex items-center gap-0.5">
+                <iconify-icon icon="lucide:star" class="text-[#EDB21D] fill-[#EDB21D] text-[10px]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#EDB21D] fill-[#EDB21D] text-[10px]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#EDB21D] fill-[#EDB21D] text-[10px]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#EDB21D] fill-[#EDB21D] text-[10px]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#EDB21D] fill-[#EDB21D] text-[10px]"></iconify-icon>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2 line-clamp-2">Excelente atención y el mejor café de Lechería. Súper recomendado.</p>
+            <p class="text-[11px] text-gray-400 mt-3">Hace 3 días</p>
+          </div>
+          <!-- Review 2 -->
+          <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-[15px] text-[#002E5B]">Clínica Dental San José</h3>
+              <div class="flex items-center gap-0.5">
+                <iconify-icon icon="lucide:star" class="text-[#EDB21D] fill-[#EDB21D] text-[10px]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#EDB21D] fill-[#EDB21D] text-[10px]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#EDB21D] fill-[#EDB21D] text-[10px]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#EDB21D] fill-[#EDB21D] text-[10px]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-gray-200 text-[10px]"></iconify-icon>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2 line-clamp-2">Muy profesionales, aunque la espera fue un poco larga.</p>
+            <p class="text-[11px] text-gray-400 mt-3">Hace 1 semana</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: MÁS -->
+      <div id="panel-mas" class="panel-content hidden">
+        <div class="px-5 pt-6 pb-4">
+          <h1 class="text-xl font-extrabold text-[#002E5B]">Más</h1>
+        </div>
+        <div class="grid grid-cols-2 gap-3 px-5">
+          <button class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex flex-col items-center gap-2 active:scale-95 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-500"><iconify-icon icon="lucide:layout-grid" class="text-2xl"></iconify-icon></div>
+            <span class="text-xs font-semibold text-[#002E5B]">Categorías</span>
+          </button>
+          <button class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex flex-col items-center gap-2 active:scale-95 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-green-50 flex items-center justify-center text-green-500"><iconify-icon icon="lucide:map-pin" class="text-2xl"></iconify-icon></div>
+            <span class="text-xs font-semibold text-[#002E5B]">Mapa</span>
+          </button>
+          <button class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex flex-col items-center gap-2 active:scale-95 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center text-amber-500"><iconify-icon icon="lucide:ticket" class="text-2xl"></iconify-icon></div>
+            <span class="text-xs font-semibold text-[#002E5B]">Cupones</span>
+          </button>
+          <button class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex flex-col items-center gap-2 active:scale-95 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-500"><iconify-icon icon="lucide:shield-check" class="text-2xl"></iconify-icon></div>
+            <span class="text-xs font-semibold text-[#002E5B]">Verificación</span>
+          </button>
+          <button class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex flex-col items-center gap-2 active:scale-95 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-pink-50 flex items-center justify-center text-pink-500"><iconify-icon icon="lucide:share-2" class="text-2xl"></iconify-icon></div>
+            <span class="text-xs font-semibold text-[#002E5B]">Invitar Amigos</span>
+          </button>
+          <button class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex flex-col items-center gap-2 active:scale-95 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-500"><iconify-icon icon="lucide:info" class="text-2xl"></iconify-icon></div>
+            <span class="text-xs font-semibold text-[#002E5B]">Acerca de</span>
+          </button>
+          <button class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex flex-col items-center gap-2 active:scale-95 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-teal-500"><iconify-icon icon="lucide:help-circle" class="text-2xl"></iconify-icon></div>
+            <span class="text-xs font-semibold text-[#002E5B]">FAQ</span>
+          </button>
+          <button class="bg-white rounded-2xl p-4 shadow-sm border border-gray-50 flex flex-col items-center gap-2 active:scale-95 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center text-orange-500"><iconify-icon icon="lucide:headphones" class="text-2xl"></iconify-icon></div>
+            <span class="text-xs font-semibold text-[#002E5B]">Soporte</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER PANELS -->
+      <div id="panel-buscar" class="panel-content hidden flex flex-col items-center justify-center h-full pt-20">
+        <iconify-icon icon="lucide:search" class="text-5xl text-gray-200 mb-4"></iconify-icon>
+        <p class="text-gray-400 font-semibold">Buscar contenido...</p>
+      </div>
+      <div id="panel-favoritos" class="panel-content hidden flex flex-col items-center justify-center h-full pt-20">
+        <iconify-icon icon="lucide:heart" class="text-5xl text-gray-200 mb-4"></iconify-icon>
+        <p class="text-gray-400 font-semibold">Tus favoritos aparecerán aquí</p>
+      </div>
     </main>
 
-    <!-- BOTTOM TAB BAR -->
-    <div role="navigation" class="shrink-0 bg-white border-t border-gray-100 flex items-center justify-between px-6 h-[84px] pb-[34px]">
-      <a href="#" id="nav-inicio" class="nav-tab flex flex-col items-center gap-1 text-[#002E5B]"><iconify-icon icon="lucide:home" class="text-2xl"></iconify-icon><span class="text-[10px] font-bold">Inicio</span></a>
-      <a href="https://p.superdesign.dev/draft/a2622a8e-ba47-41eb-835a-53d8a5287407" id="nav-buscar" class="nav-tab flex flex-col items-center gap-1 text-gray-400"><iconify-icon icon="lucide:search" class="text-2xl"></iconify-icon><span class="text-[10px] font-semibold">Buscar</span></a>
-      <a href="#" id="nav-favoritos" class="nav-tab flex flex-col items-center gap-1 text-gray-400"><iconify-icon icon="lucide:heart" class="text-2xl"></iconify-icon><span class="text-[10px] font-semibold">Favoritos</span></a>
-      <a href="https://p.superdesign.dev/draft/b1158dee-eb6a-40c8-852b-96c1ada09d5c" id="nav-perfil" class="nav-tab flex flex-col items-center gap-1 text-gray-400"><iconify-icon icon="lucide:user" class="text-2xl"></iconify-icon><span class="text-[10px] font-semibold">Perfil</span></a>
-      <a href="https://p.superdesign.dev/draft/d92028d9-4628-45fa-8bd7-c883e2df01e9" id="nav-mas" class="nav-tab flex flex-col items-center gap-1 text-gray-400"><iconify-icon icon="lucide:layout-grid" class="text-2xl"></iconify-icon><span class="text-[10px] font-semibold">Más</span></a>
+    <!-- BOTTOM NAVIGATION -->
+    <div role="navigation" class="shrink-0 bg-white border-t border-gray-100 flex items-center justify-between px-6 h-[84px] pb-[34px] z-30">
+      <a href="javascript:void(0)" id="nav-inicio" onclick="switchMainTab('inicio')" class="nav-tab flex flex-col items-center gap-1 text-[#002E5B]"><iconify-icon icon="lucide:home" class="text-2xl"></iconify-icon><span class="text-[10px] font-bold">Inicio</span></a>
+      <a href="javascript:void(0)" id="nav-buscar" onclick="switchMainTab('buscar')" class="nav-tab flex flex-col items-center gap-1 text-gray-400"><iconify-icon icon="lucide:search" class="text-2xl"></iconify-icon><span class="text-[10px] font-semibold">Buscar</span></a>
+      <a href="javascript:void(0)" id="nav-favoritos" onclick="switchMainTab('favoritos')" class="nav-tab flex flex-col items-center gap-1 text-gray-400"><iconify-icon icon="lucide:heart" class="text-2xl"></iconify-icon><span class="text-[10px] font-semibold">Favoritos</span></a>
+      <a href="javascript:void(0)" id="nav-actividad" onclick="switchMainTab('actividad')" class="nav-tab flex flex-col items-center gap-1 text-gray-400"><iconify-icon icon="lucide:clock" class="text-2xl"></iconify-icon><span class="text-[10px] font-semibold">Actividad</span></a>
+      <a href="javascript:void(0)" id="nav-mas" onclick="switchMainTab('mas')" class="nav-tab flex flex-col items-center gap-1 text-gray-400"><iconify-icon icon="lucide:layout-grid" class="text-2xl"></iconify-icon><span class="text-[10px] font-semibold">Más</span></a>
+    </div>
+
+    <!-- DRAWER OVERLAYS -->
+    <div id="notif-overlay" class="fixed inset-0 bg-black/40 z-40 transition-opacity duration-200 hidden opacity-0"></div>
+    <div id="notif-drawer" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-[32px] max-h-[70%] w-full z-50 flex flex-col shadow-xl hidden translate-y-full transition-transform duration-300">
+      <div class="flex justify-center pt-3 pb-1"><div class="w-10 h-1 bg-gray-200 rounded-full"></div></div>
+      <div class="px-5 pb-4 pt-2 border-b border-gray-100 flex items-center justify-between">
+        <h2 class="font-bold text-lg text-[#002E5B]">Notificaciones</h2>
+        <button id="notif-close-btn"><iconify-icon icon="lucide:x" class="text-lg text-gray-400"></iconify-icon></button>
+      </div>
+      <div class="flex-1 overflow-y-auto p-5 text-sm text-gray-500">No tienes nuevas notificaciones.</div>
+    </div>
+
+    <div id="avatar-overlay" class="fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 hidden opacity-0"></div>
+    <div id="avatar-drawer" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl max-h-[80vh] w-full z-50 flex flex-col shadow-2xl hidden translate-y-full transition-transform duration-300">
+      <div class="flex justify-center pt-3 mb-2"><div id="avatar-handle" class="w-10 h-1 bg-gray-300 rounded-full cursor-pointer"></div></div>
+      <div class="px-6 py-4 flex items-center gap-4">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Juan&backgroundColor=EDB21D&baseColor=002E5B" class="w-14 h-14 rounded-full border-2 border-gray-50"/>
+        <div>
+          <h3 class="font-bold text-lg text-[#002E5B]">Juan Mendoza</h3>
+          <p class="text-sm text-gray-500">juan@email.com</p>
+        </div>
+      </div>
+      
+      <div class="h-px bg-gray-100 mx-6"></div>
+
+      <div class="flex-1 overflow-y-auto no-scrollbar pb-10">
+        <div class="py-1">
+          <button class="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-gray-50 active:scale-[0.99] transition text-left">
+            <iconify-icon icon="lucide:user" class="text-xl text-gray-400"></iconify-icon>
+            <span class="text-sm font-semibold text-[#002E5B] flex-1">Mi Perfil</span>
+            <iconify-icon icon="lucide:chevron-right" class="text-gray-300"></iconify-icon>
+          </button>
+          <button class="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-gray-50 active:scale-[0.99] transition text-left">
+            <iconify-icon icon="lucide:shield" class="text-xl text-gray-400"></iconify-icon>
+            <span class="text-sm font-semibold text-[#002E5B] flex-1">Configuración de Privacidad</span>
+            <iconify-icon icon="lucide:chevron-right" class="text-gray-300"></iconify-icon>
+          </button>
+        </div>
+
+        <div class="h-px bg-gray-100 mx-6"></div>
+
+        <div class="py-1">
+          <button class="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-gray-50 active:scale-[0.99] transition text-left">
+            <iconify-icon icon="lucide:receipt" class="text-xl text-gray-400"></iconify-icon>
+            <span class="text-sm font-semibold text-[#002E5B] flex-1">Historial de Transacciones</span>
+            <iconify-icon icon="lucide:chevron-right" class="text-gray-300"></iconify-icon>
+          </button>
+          <button class="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-gray-50 active:scale-[0.99] transition text-left">
+            <iconify-icon icon="lucide:message-square" class="text-xl text-gray-400"></iconify-icon>
+            <span class="text-sm font-semibold text-[#002E5B] flex-1">Mis Reviews</span>
+            <iconify-icon icon="lucide:chevron-right" class="text-gray-300"></iconify-icon>
+          </button>
+          <button class="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-gray-50 active:scale-[0.99] transition text-left">
+            <iconify-icon icon="lucide:history" class="text-xl text-gray-400"></iconify-icon>
+            <span class="text-sm font-semibold text-[#002E5B] flex-1">Historial de Búsqueda</span>
+            <iconify-icon icon="lucide:chevron-right" class="text-gray-300"></iconify-icon>
+          </button>
+        </div>
+
+        <div class="h-px bg-gray-100 mx-6"></div>
+
+        <div class="py-1">
+          <button class="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-gray-50 active:scale-[0.99] transition text-left">
+            <iconify-icon icon="lucide:bell-ring" class="text-xl text-gray-400"></iconify-icon>
+            <span class="text-sm font-semibold text-[#002E5B] flex-1">Notificaciones</span>
+            <iconify-icon icon="lucide:chevron-right" class="text-gray-300"></iconify-icon>
+          </button>
+          <button class="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-gray-50 active:scale-[0.99] transition text-left">
+            <iconify-icon icon="lucide:help-circle" class="text-xl text-gray-400"></iconify-icon>
+            <span class="text-sm font-semibold text-[#002E5B] flex-1">Ayuda y Soporte</span>
+            <iconify-icon icon="lucide:chevron-right" class="text-gray-300"></iconify-icon>
+          </button>
+        </div>
+
+        <div class="h-px bg-gray-100 mx-6"></div>
+
+        <div class="py-1">
+          <button class="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-gray-50 active:scale-[0.99] transition text-left">
+            <iconify-icon icon="lucide:file-text" class="text-xl text-gray-400"></iconify-icon>
+            <span class="text-sm font-semibold text-[#002E5B] flex-1">Términos y Condiciones</span>
+            <iconify-icon icon="lucide:chevron-right" class="text-gray-300"></iconify-icon>
+          </button>
+          <button class="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-gray-50 active:scale-[0.99] transition text-left">
+            <iconify-icon icon="lucide:lock" class="text-xl text-gray-400"></iconify-icon>
+            <span class="text-sm font-semibold text-[#002E5B] flex-1">Política de Privacidad</span>
+            <iconify-icon icon="lucide:chevron-right" class="text-gray-300"></iconify-icon>
+          </button>
+        </div>
+
+        <div class="h-px bg-gray-100 mx-6"></div>
+
+        <div class="py-2">
+          <button class="w-full px-6 py-4 flex items-center gap-4 hover:bg-red-50 active:scale-[0.99] transition text-left">
+            <iconify-icon icon="lucide:log-out" class="text-xl text-red-500"></iconify-icon>
+            <span class="text-sm font-bold text-red-500 flex-1">Cerrar Sesión</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    // Interactivity scripts
+    // Navigation Logic
+    function switchMainTab(tabId) {
+      const panels = ['inicio', 'actividad', 'buscar', 'favoritos', 'mas'];
+      panels.forEach(p => {
+        const panel = document.getElementById(`panel-${p}`);
+        if (panel) panel.classList.toggle('hidden', p !== tabId);
+        
+        const tab = document.getElementById(`nav-${p}`);
+        const icon = tab.querySelector('iconify-icon');
+        const label = tab.querySelector('span');
+        
+        if (p === tabId) {
+          tab.classList.remove('text-gray-400');
+          tab.classList.add('text-[#002E5B]');
+          label.classList.remove('font-semibold');
+          label.classList.add('font-bold');
+        } else {
+          tab.classList.remove('text-[#002E5B]');
+          tab.classList.add('text-gray-400');
+          label.classList.remove('font-bold');
+          label.classList.add('font-semibold');
+        }
+      });
+    }
+
+    function switchActividadTab(subTab) {
+      const tPanel = document.getElementById('actividad-transacciones');
+      const rPanel = document.getElementById('actividad-reviews');
+      const tBtn = document.getElementById('btn-filter-transacciones');
+      const rBtn = document.getElementById('btn-filter-reviews');
+
+      if (subTab === 'transacciones') {
+        tPanel.classList.remove('hidden');
+        rPanel.classList.add('hidden');
+        tBtn.className = 'bg-[#002E5B] text-white rounded-full px-4 py-2 text-xs font-bold transition-all';
+        rBtn.className = 'bg-white border border-gray-200 text-gray-500 rounded-full px-4 py-2 text-xs font-semibold transition-all';
+      } else {
+        tPanel.classList.add('hidden');
+        rPanel.classList.remove('hidden');
+        rBtn.className = 'bg-[#002E5B] text-white rounded-full px-4 py-2 text-xs font-bold transition-all';
+        tBtn.className = 'bg-white border border-gray-200 text-gray-500 rounded-full px-4 py-2 text-xs font-semibold transition-all';
+      }
+    }
+
+    // Existing Component Logic
     const btnUsuario = document.getElementById('toggle-usuario');
     const btnNegocio = document.getElementById('toggle-negocio');
     function updateToggle(active) {
@@ -235,23 +452,38 @@
         btnUsuario.className = 'w-9 h-9 flex items-center justify-center rounded-xl transition-all text-gray-500 hover:bg-gray-200';
       }
     }
-    if(btnUsuario) btnUsuario.addEventListener('click', () => updateToggle('usuario'));
-    if(btnNegocio) btnNegocio.addEventListener('click', () => updateToggle('negocio'));
+    if(btnUsuario) btnUsuario.onclick = () => updateToggle('usuario');
+    if(btnNegocio) btnNegocio.onclick = () => updateToggle('negocio');
 
-    const micBtn = document.getElementById('mic-btn');
-    const searchInput = document.getElementById('main-search-input');
-    let isListening = false;
-    if(micBtn) micBtn.addEventListener('click', () => {
-      isListening = !isListening;
-      const icon = micBtn.querySelector('iconify-icon');
-      if (isListening) {
-        icon.classList.add('animate-pulse-red');
-        searchInput.placeholder = 'Escuchando...';
+    window.toggleLocationDropdown = function() {
+      const menu = document.getElementById('location-menu');
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        setTimeout(() => { menu.classList.replace('opacity-0', 'opacity-100'); menu.classList.replace('-translate-y-2', 'translate-y-0'); document.getElementById('location-chevron').classList.add('rotate-180'); }, 10);
       } else {
-        icon.classList.remove('animate-pulse-red');
-        searchInput.placeholder = '¿Qué necesitas hoy?';
+        menu.classList.replace('opacity-100', 'opacity-0'); menu.classList.replace('translate-y-0', '-translate-y-2'); document.getElementById('location-chevron').classList.remove('rotate-180');
+        setTimeout(() => menu.classList.add('hidden'), 200);
       }
-    });
+    };
+
+    window.selectLocation = function(name) {
+      document.getElementById('current-location-text').textContent = name;
+      window.toggleLocationDropdown();
+    };
+
+    const notifBellBtn = document.getElementById('notif-bell-btn');
+    const notifOverlay = document.getElementById('notif-overlay');
+    const notifDrawer = document.getElementById('notif-drawer');
+    const notifCloseBtn = document.getElementById('notif-close-btn');
+    if(notifBellBtn) notifBellBtn.onclick = () => { notifOverlay.classList.remove('hidden'); notifDrawer.classList.remove('hidden'); setTimeout(() => { notifOverlay.classList.replace('opacity-0', 'opacity-100'); notifDrawer.classList.remove('translate-y-full'); }, 10); };
+    if(notifCloseBtn) notifCloseBtn.onclick = () => { notifOverlay.classList.replace('opacity-100', 'opacity-0'); notifDrawer.classList.add('translate-y-full'); setTimeout(() => { notifOverlay.classList.add('hidden'); notifDrawer.classList.add('hidden'); }, 300); };
+    
+    const avatarTrigger = document.getElementById('user-avatar-trigger');
+    const avatarOverlay = document.getElementById('avatar-overlay');
+    const avatarDrawer = document.getElementById('avatar-drawer');
+    if(avatarTrigger) avatarTrigger.onclick = () => { avatarOverlay.classList.remove('hidden'); avatarDrawer.classList.remove('hidden'); setTimeout(() => { avatarOverlay.classList.replace('opacity-0', 'opacity-100'); avatarDrawer.classList.remove('translate-y-full'); }, 10); };
+    if(avatarOverlay) avatarOverlay.onclick = () => { avatarOverlay.classList.replace('opacity-100', 'opacity-0'); avatarDrawer.classList.add('translate-y-full'); setTimeout(() => { avatarOverlay.classList.add('hidden'); avatarDrawer.classList.add('hidden'); }, 300); };
 
     if (typeof PetiteVue !== 'undefined') { PetiteVue.createApp().mount('#immq'); }
   </script>

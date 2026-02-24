@@ -58,6 +58,7 @@
 
     .status { font-size: 12px; font-weight: 600; white-space: nowrap; }
     .done { color: #16a34a; }
+    .approved { color: #002E5B; font-weight: 800; }
     .wire { color: #2563eb; }
     .new { color: #6b7280; }
     .crit { color: #dc2626; }
@@ -89,7 +90,7 @@
       <div class="stat"><div class="stat-num">38</div><div class="stat-label">P1 — Demo cliente</div></div>
       <div class="stat"><div class="stat-num">59</div><div class="stat-label">P2 — Completo</div></div>
       <div class="stat"><div class="stat-num">31</div><div class="stat-label">P3 — Exhaustivo</div></div>
-      <div class="stat"><div class="stat-num">7</div><div class="stat-label">Generados ✅</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Generados ✅</div></div>
       <div class="stat"><div class="stat-num">10</div><div class="stat-label">Email templates</div></div>
     </div>
 
@@ -110,7 +111,14 @@
         <div class="module-count">38 pantallas</div>
       </div>
 
-      <div class="batch-title">Sub-batch A1 — Entrada y Perfiles <span style="font-weight:400;color:#EDB21D">· 7 screens · P1</span></div>
+      <div class="batch-title">Pantalla Base Aprobada</div>
+      <table>
+        <tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th><th>Draft ID</th></tr>
+        <tr style="background:#F0F9FF;"><td class="id-cell">—</td><td><strong>Home9</strong> — Home / Hub de Búsqueda</td><td><span class="p-badge p1">P1</span></td><td class="status approved">✅✅✅ APROBADO</td><td><a class="draft-link" href="screens/home.html">home.html</a></td></tr>
+      </table>
+      <div class="batch-note">Home9 es la fuente de verdad visual. Incluye: location dropdown, avatar bottom sheet, tab Actividad, tab Más interactivos.</div>
+
+      <div class="batch-title" style="margin-top:24px;">Sub-batch A1 — Entrada y Perfiles <span style="font-weight:400;color:#EDB21D">· 7 screens · P1</span></div>
       <table>
         <tr><th>#</th><th>Pantalla</th><th>P</th><th>Estado</th><th>Draft ID</th></tr>
         <tr><td class="id-cell">A1.1</td><td>Splash Screen</td><td><span class="p-badge p1">P1</span></td><td class="status done">✅✅ generado</td><td><a class="draft-link" href="screens/splash.html">splash.html</a></td></tr>
